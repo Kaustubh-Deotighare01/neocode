@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — NeoCode Technologies</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<style>
+:root{--black:#050810;--dark:#090d1a;--card:#0d1226;--blue:#1a6bff;--blue-glow:#2979ff;--cyan:#00d4ff;--white:#f0f4ff;--muted:#8899bb;--border:rgba(26,107,255,0.18);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;line-height:1.6;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;height:72px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,8,16,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--blue),var(--cyan));border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:#fff;}
+.logo-text{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;color:var(--white);}
+.logo-text span{color:var(--cyan);}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--white);}
+.nav-cta{background:linear-gradient(135deg,var(--blue),var(--cyan))!important;color:#fff!important;padding:9px 22px;border-radius:8px;font-weight:600!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(5,8,16,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:24px 5%;flex-direction:column;gap:20px;z-index:99;}
+.mobile-menu a{text-decoration:none;color:var(--muted);font-size:16px;font-weight:500;}
+.mobile-menu.open{display:flex;}
+
+.section-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(34px,4.5vw,56px);font-weight:800;letter-spacing:-2px;line-height:1.08;margin-bottom:18px;}
+.grad{background:linear-gradient(135deg,var(--blue-glow),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.section-sub{color:var(--muted);font-size:16px;font-weight:300;line-height:1.75;}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(26,107,255,0.12);border:1px solid rgba(26,107,255,0.3);color:var(--cyan);font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:7px 18px;border-radius:100px;margin-bottom:24px;}
+.badge-dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+
+/* PAGE HERO */
+.page-hero{padding:140px 5% 80px;text-align:center;position:relative;overflow:hidden;background:var(--dark);border-bottom:1px solid var(--border);}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(26,107,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(26,107,255,0.05) 1px,transparent 1px);background-size:60px 60px;}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.13;}
+.orb1{width:500px;height:500px;background:var(--blue);top:-150px;right:-100px;}
+.orb2{width:350px;height:350px;background:var(--cyan);bottom:-80px;left:-80px;}
+.hero-content{position:relative;z-index:1;max-width:660px;margin:0 auto;}
+
+/* CONTACT MAIN */
+.contact-main{padding:80px 5% 100px;max-width:1200px;margin:0 auto;}
+.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:start;}
+
+/* INFO SIDE */
+.contact-info-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;margin-bottom:24px;position:relative;overflow:hidden;}
+.contact-info-card::before{content:'';position:absolute;top:-60px;right:-60px;width:160px;height:160px;background:radial-gradient(circle,rgba(26,107,255,0.15),transparent 70%);}
+.contact-info-card h3{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:24px;position:relative;z-index:1;}
+.contact-item{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;position:relative;z-index:1;}
+.contact-item:last-child{margin-bottom:0;}
+.contact-icon{width:44px;height:44px;background:rgba(26,107,255,0.1);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.contact-item-text strong{display:block;font-size:12px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--cyan);margin-bottom:4px;}
+.contact-item-text span,.contact-item-text a{color:var(--muted);font-size:14px;text-decoration:none;line-height:1.5;display:block;}
+.contact-item-text a:hover{color:var(--white);}
+
+.hours-card{background:rgba(26,107,255,0.06);border:1px solid var(--border);border-radius:16px;padding:28px 32px;}
+.hours-card h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:16px;}
+.hours-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(26,107,255,0.1);font-size:13px;}
+.hours-row:last-child{border-bottom:none;}
+.hours-row span:first-child{color:var(--muted);}
+.hours-row span:last-child{color:var(--cyan);font-weight:600;}
+
+/* FORM */
+.contact-form-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:52px 48px;position:relative;overflow:hidden;}
+.contact-form-box::before{content:'';position:absolute;top:-80px;right:-80px;width:220px;height:220px;background:radial-gradient(circle,rgba(0,212,255,0.08),transparent 70%);}
+.form-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;letter-spacing:-0.5px;margin-bottom:6px;}
+.form-subtitle{color:var(--muted);font-size:14px;margin-bottom:36px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{margin-bottom:20px;position:relative;z-index:1;}
+.form-group label{display:block;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:13px 16px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;}
+.form-group select option{background:var(--card);}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,107,255,0.12);}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(136,153,187,0.5);}
+.form-group textarea{resize:vertical;min-height:140px;}
+.char-count{font-size:11px;color:var(--muted);text-align:right;margin-top:4px;}
+.budget-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.budget-option{position:relative;}
+.budget-option input[type="radio"]{position:absolute;opacity:0;width:0;height:0;}
+.budget-option label{display:block;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.2s;text-align:center;text-transform:none;letter-spacing:0;}
+.budget-option input[type="radio"]:checked+label{background:rgba(26,107,255,0.15);border-color:var(--blue);color:var(--white);}
+.form-submit{width:100%;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;padding:16px;border-radius:10px;font-size:15px;font-weight:600;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform 0.2s,box-shadow 0.2s,opacity 0.2s;box-shadow:0 0 30px rgba(26,107,255,0.3);position:relative;z-index:1;margin-top:4px;}
+.form-submit:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 0 50px rgba(0,212,255,0.4);}
+.form-submit:disabled{opacity:0.65;cursor:not-allowed;}
+.form-msg{margin-top:16px;padding:14px 18px;border-radius:10px;font-size:14px;display:none;position:relative;z-index:1;}
+.form-msg.success{background:rgba(0,200,100,0.1);border:1px solid rgba(0,200,100,0.3);color:#4ade80;display:block;}
+.form-msg.error{background:rgba(255,60,60,0.08);border:1px solid rgba(255,60,60,0.25);color:#f87171;display:block;}
+.privacy-note{font-size:12px;color:var(--muted);text-align:center;margin-top:14px;position:relative;z-index:1;}
+
+/* MAP PLACEHOLDER */
+.map-section{background:var(--dark);padding:0 5% 100px;border-top:1px solid var(--border);}
+.map-inner{max-width:1200px;margin:0 auto;padding-top:80px;}
+.map-header{text-align:center;margin-bottom:48px;}
+.map-frame{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;height:380px;position:relative;}
+.map-frame iframe{width:100%;height:100%;border:none;filter:invert(90%) hue-rotate(180deg) brightness(0.85) contrast(1.1);}
+
+/* FAQ */
+.faq-section{padding:100px 5%;max-width:900px;margin:0 auto;}
+.faq-header{text-align:center;margin-bottom:56px;}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;transition:border-color 0.2s;}
+.faq-item.open{border-color:rgba(0,212,255,0.3);}
+.faq-q{width:100%;background:var(--card);border:none;color:var(--white);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;padding:20px 24px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+.faq-q:hover{background:rgba(13,18,38,0.8);}
+.faq-icon{font-size:20px;color:var(--cyan);transition:transform 0.3s;flex-shrink:0;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-a{background:rgba(13,18,38,0.5);padding:0 24px;max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;}
+.faq-item.open .faq-a{max-height:200px;padding:20px 24px;}
+.faq-a p{color:var(--muted);font-size:14px;line-height:1.8;}
+
+/* FOOTER */
+footer{background:var(--black);border-top:1px solid var(--border);padding:60px 5% 32px;}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:60px;margin-bottom:48px;}
+.footer-brand p{color:var(--muted);font-size:14px;line-height:1.7;margin:16px 0 24px;}
+.footer-social{display:flex;gap:12px;}
+.social-btn{width:36px;height:36px;background:var(--card);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:border-color 0.2s,background 0.2s;text-decoration:none;}
+.social-btn:hover{border-color:var(--cyan);background:rgba(0,212,255,0.08);}
+.footer-col h4{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.5px;margin-bottom:20px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-col ul li a,.footer-col ul li span{color:var(--muted);font-size:14px;text-decoration:none;transition:color 0.2s;}
+.footer-col ul li a:hover{color:var(--white);}
+.footer-bottom{border-top:1px solid var(--border);padding-top:28px;display:flex;justify-content:space-between;align-items:center;}
+.footer-bottom p{color:var(--muted);font-size:13px;}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:768px){
+  .nav-links{display:none;} .hamburger{display:flex;}
+  .contact-grid{grid-template-columns:1fr;}
+  .form-row,.budget-grid{grid-template-columns:1fr;}
+  .contact-form-box{padding:32px 24px;}
+  .footer-top{grid-template-columns:1fr;gap:28px;}
+  .footer-bottom{flex-direction:column;gap:10px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="logo-icon">N</div>
+    <span class="logo-text">NeoCode <span>Technologies</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html" class="nav-cta active">Contact Us</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="grid-bg"></div>
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-content">
+    <div class="badge"><span class="badge-dot"></span>We'd Love to Hear From You</div>
+    <div class="section-label">Contact Us</div>
+    <h1 class="section-title">Let's Build Something <span class="grad">Amazing</span> Together</h1>
+    <p class="section-sub">Reach out to our team and we'll respond within 24 hours. First consultation is always free.</p>
+  </div>
+</div>
+
+<!-- MAIN CONTACT -->
+<div class="contact-main">
+  <div class="contact-grid">
+
+    <!-- LEFT INFO -->
+    <div>
+      <div class="contact-info-card reveal">
+        <h3>Get In Touch</h3>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-item-text">
+            <strong>Location</strong>
+            <span>Nagpur, Maharashtra, India</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div class="contact-item-text">
+            <strong>Email Us</strong>
+            <a href="mailto:neocodetechnologies@gmail.com">neocodetechnologies@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-item-text">
+            <strong>Call Us</strong>
+            <a href="tel:+918421427605">+91 8421427605</a>
+            <a href="tel:+918080265481">+91 8080265481</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div class="contact-item-text">
+            <strong>Website</strong>
+            <a href="http://www.neocodetechnologies.com" target="_blank">www.neocodetechnologies.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="hours-card reveal">
+        <h4>Business Hours</h4>
+        <div class="hours-row"><span>Monday – Friday</span><span>9:00 AM – 7:00 PM</span></div>
+        <div class="hours-row"><span>Saturday</span><span>10:00 AM – 4:00 PM</span></div>
+        <div class="hours-row"><span>Sunday</span><span>Closed</span></div>
+      </div>
+    </div>
+
+    <!-- RIGHT FORM -->
+    <div class="contact-form-box reveal">
+      <div class="form-title">Send Us a Message</div>
+      <div class="form-subtitle">Fill in the details below and we'll get back to you within 24 hours.</div>
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name *</label>
+            <input type="text" id="firstName" placeholder="John" required>
+          </div>
+          <div class="form-group">
+            <label>Last Name *</label>
+            <input type="text" id="lastName" placeholder="Doe" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" id="email" placeholder="john@yourcompany.com" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="phone" placeholder="+91 00000 00000">
+          </div>
+          <div class="form-group">
+            <label>Company / Organisation</label>
+            <input type="text" id="company" placeholder="Your Company Ltd.">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Service You're Interested In *</label>
+          <select id="service" required>
+            <option value="">Select a service…</option>
+            <option>Custom Software Development</option>
+            <option>AI & Automation Solutions</option>
+            <option>Cloud & DevOps</option>
+            <option>Mobile App Development</option>
+            <option>Web Development</option>
+            <option>Multiple Services</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Estimated Project Budget</label>
+          <div class="budget-grid">
+            <div class="budget-option">
+              <input type="radio" name="budget" id="b1" value="Under ₹50K">
+              <label for="b1">Under ₹50K</label>
+            </div>
+            <div class="budget-option">
+              <input type="radio" name="budget" id="b2" value="₹50K – ₹2L">
+              <label for="b2">₹50K – ₹2L</label>
+            </div>
+            <div class="budget-option">
+              <input type="radio" name="budget" id="b3" value="₹2L – ₹10L">
+              <label for="b3">₹2L – ₹10L</label>
+            </div>
+            <div class="budget-option">
+              <input type="radio" name="budget" id="b4" value="₹10L+">
+              <label for="b4">₹10L+</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Tell Us About Your Project *</label>
+          <textarea id="message" placeholder="Describe your project goals, timeline, and any specific requirements…" maxlength="1000" required oninput="updateChar(this)"></textarea>
+          <div class="char-count"><span id="charCount">0</span>/1000</div>
+        </div>
+        <button type="submit" class="form-submit" id="submitBtn">Send Message →</button>
+        <p class="privacy-note">🔒 Your information is secure and will never be shared with third parties.</p>
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- MAP -->
+<div class="map-section">
+  <div class="map-inner">
+    <div class="map-header reveal">
+      <div class="section-label">Find Us</div>
+      <h2 class="section-title">We're Based in <span class="grad">Nagpur</span></h2>
+    </div>
+    <div class="map-frame reveal">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d238282.74155!2d78.87799!3d21.14631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0a5a31faf13%3A0x19b37cf76e8b4ded!2sNagpur%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <div class="faq-header reveal">
+    <div class="section-label">Common Questions</div>
+    <h2 class="section-title">Frequently Asked<br><span class="grad">Questions</span></h2>
+  </div>
+  <div class="reveal">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How long does a typical project take? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><p>Project timelines vary based on scope and complexity. A simple website may take 2–4 weeks, while a complex enterprise application or AI system can take 3–6 months. We provide detailed timelines during our initial consultation.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Do you provide post-launch support? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><p>Yes! We offer comprehensive post-launch support and maintenance packages. We believe in long-term partnerships with our clients and provide ongoing technical support, updates, and enhancements as your business grows.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How do you handle project pricing? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><p>We offer flexible pricing models including fixed-price projects and time & materials engagement. Pricing is based on project requirements, complexity, and timeline. All pricing is transparent with no hidden charges.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Do you work with international clients? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><p>Absolutely! While we are based in Nagpur, Maharashtra, we serve clients globally. We are comfortable working across different time zones and use collaborative tools to ensure smooth communication throughout the project.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What technologies do you specialize in? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><p>We work with a wide range of modern technologies including React, Node.js, Python, Flutter, AWS, Azure, TensorFlow, and more. Our team stays updated with the latest tech to deliver cutting-edge solutions tailored to your needs.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="display:inline-flex;margin-bottom:4px;">
+        <div class="logo-icon">N</div>
+        <span class="logo-text" style="margin-left:10px;">NeoCode <span>Technologies</span></span>
+      </a>
+      <p>Building intelligent software solutions, AI-powered applications, and scalable digital platforms for businesses worldwide.</p>
+      <div class="footer-social">
+        <a href="mailto:neocodetechnologies@gmail.com" class="social-btn">✉️</a>
+        <a href="tel:+918421427605" class="social-btn">📞</a>
+        <a href="http://www.neocodetechnologies.com" class="social-btn" target="_blank">🌐</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="services.html">Custom Software</a></li>
+        <li><a href="services.html">AI & Automation</a></li>
+        <li><a href="services.html">Cloud & DevOps</a></li>
+        <li><a href="services.html">Mobile Apps</a></li>
+        <li><a href="services.html">Web Development</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><span>Nagpur, Maharashtra, India</span></li>
+        <li><span>neocodetechnologies@gmail.com</span></li>
+        <li><span>+91 8421427605</span></li>
+        <li><span>+91 8080265481</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 NeoCode Technologies Pvt. Ltd. All Rights Reserved.</p>
+    <p>Designed & Developed by NeoCode Technologies.</p>
+  </div>
+</footer>
+
+<script>
+(function(){emailjs.init("YOUR_PUBLIC_KEY");})();
+
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+function updateChar(el){document.getElementById('charCount').textContent=el.value.length;}
+function toggleFaq(btn){
+  const item=btn.parentElement;
+  document.querySelectorAll('.faq-item.open').forEach(i=>{if(i!==item)i.classList.remove('open');});
+  item.classList.toggle('open');
+}
+
+document.getElementById('contactForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const btn=document.getElementById('submitBtn');
+  const msg=document.getElementById('formMsg');
+  btn.disabled=true;
+  btn.textContent='Sending…';
+  msg.className='form-msg';msg.style.display='none';
+
+  const firstName=document.getElementById('firstName').value.trim();
+  const lastName=document.getElementById('lastName').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const phone=document.getElementById('phone').value.trim();
+  const company=document.getElementById('company').value.trim();
+  const service=document.getElementById('service').value;
+  const message=document.getElementById('message').value.trim();
+  const budgetEl=document.querySelector('input[name="budget"]:checked');
+  const budget=budgetEl?budgetEl.value:'Not specified';
+
+  if(!firstName||!email||!service||!message){
+    msg.className='form-msg error';
+    msg.textContent='⚠️ Please fill in all required fields (Name, Email, Service, Message).';
+    btn.disabled=false;btn.textContent='Send Message →';return;
+  }
+
+  const templateParams={
+    from_name:`${firstName} ${lastName}`,
+    from_email:email,
+    phone:phone||'Not provided',
+    company:company||'Not provided',
+    service:service||'Not specified',
+    budget:budget,
+    message:message,
+    to_email:'neocodetechnologies@gmail.com'
+  };
+
+  try{
+    await emailjs.send('YOUR_SERVICE_ID','YOUR_TEMPLATE_ID',templateParams);
+    msg.className='form-msg success';
+    msg.textContent='✅ Message sent successfully! Our team will contact you within 24 hours.';
+    this.reset();document.getElementById('charCount').textContent='0';
+  }catch(err){
+    const subject=encodeURIComponent(`New Enquiry — ${service} — ${firstName} ${lastName}`);
+    const body=encodeURIComponent(`Name: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone||'N/A'}\nCompany: ${company||'N/A'}\nService: ${service}\nBudget: ${budget}\n\nMessage:\n${message}`);
+    window.location.href=`mailto:neocodetechnologies@gmail.com?subject=${subject}&body=${body}`;
+    msg.className='form-msg success';
+    msg.textContent='📧 Your email client has been opened with your message pre-filled. Please send it to complete your enquiry.';
+  }
+  btn.disabled=false;btn.textContent='Send Message →';
+});
+
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
