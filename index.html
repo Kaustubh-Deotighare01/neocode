@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NeoCode Technologies — AI-Powered Digital Solutions</title>
+  <link rel="icon" type="image/png" href="newlogo.png" sizes="150x150">
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=VT323&display=swap"
     rel="stylesheet">
@@ -14,7 +15,7 @@
 
 <body>
   <div class="splash-screen">
-    <img src="darklogo.png" alt="NeoCode Intro Logo" class="splash-logo">
+    <img src="newlogo.png" alt="NeoCode Intro Logo" class="splash-logo">
     <div class="splash-symbols">
       <span class="sym sym1">{ }</span>
       <span class="sym sym2">&lt; / &gt;</span>
@@ -27,7 +28,7 @@
   <nav>
     <div class="nav-left">
       <a href="#home" class="nav-logo">
-        <img src="darklogo.png" alt="NeoCode logo" class="nav-logo-img">
+        <img src="newlogo.png" alt="NeoCode logo" class="nav-logo-img">
         <!-- <span class="logo-text">NeoCode <span>Technologies</span></span> -->
       </a>
     </div>
@@ -53,7 +54,7 @@
 
   <section id="home">
     <div class="hero-bg">
-      
+
     </div>
     <div class="hero-content">
       <div class="hero-badge"><span class="badge-dot"></span>AI-Powered Innovation</div>
@@ -261,7 +262,7 @@
       <div class="map-frame">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d238282.74155!2d78.87799!3d21.14631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0a5a31faf13%3A0x19b37cf76e8b4ded!2sNagpur%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000"
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          allowfullscreen="" loading="eager" height="380" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
@@ -301,7 +302,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#home" class="nav-logo">
-          <img src="logo1.png" alt="NeoCode logo" class="nav-logo-img">
+          <img src="newlogo.png" alt="NeoCode logo" class="nav-logo-img">
           <span class="logo-text">NeoCode <span>Technologies</span></span>
         </a>
         <p>Building intelligent software solutions, AI-powered applications, and scalable digital platforms for
@@ -425,7 +426,7 @@
       // Typing Effect Logic
       const typingText = document.querySelector('.typing-text');
       if (typingText) {
-        const textToType = "NeoCode Technology";
+        const textToType = "NeoCode Technology ";
         let charIndex = 0;
         setTimeout(() => {
           function typeWriter() {
@@ -448,7 +449,7 @@
       let mouseY = window.innerHeight / 2;
       let glassX = mouseX;
       let glassY = mouseY;
-      
+
       document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
@@ -457,9 +458,9 @@
       function animateCursor() {
         glassX += (mouseX - glassX) * 0.15;
         glassY += (mouseY - glassY) * 0.15;
-        
+
         if (cursorGlass) {
-            cursorGlass.style.transform = `translate3d(${glassX}px, ${glassY}px, 0) translate(-50%, -50%)`;
+          cursorGlass.style.transform = `translate3d(${glassX}px, ${glassY}px, 0) translate(-50%, -50%)`;
         }
         requestAnimationFrame(animateCursor);
       }

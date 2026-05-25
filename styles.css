@@ -38,8 +38,26 @@ body::before {
     inset: 0;
     background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
     background-size: 100% 48px, 48px 100%;
+    background-position: 0 0, 0 0;
+    animation: grid-scroll 20s linear infinite;
     pointer-events: none;
     z-index: 0;
+}
+
+@keyframes grid-scroll {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+
+    100% {
+        background-position: 0 48px, 48px 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body::before {
+        animation: none !important;
+    }
 }
 
 img {
@@ -60,7 +78,7 @@ textarea {
 
 nav {
     position: fixed;
-    top: -60px;
+    top: -40px;
     left: 0;
     right: 0;
     z-index: 100;
@@ -315,9 +333,9 @@ nav {
 }
 
 .hero-title {
-    font-family: 'VT323', monospace;
+    font-family:  'Syne', sans-serif;
     font-weight: 800;
-    font-size: clamp(42px, 7vw, 76px);
+    font-size: clamp(30px, 7vw, 66px);
     line-height: 1.02;
     letter-spacing: -1.8px;
     margin-bottom: 0px;
@@ -338,13 +356,13 @@ nav {
 }
 
 .typing-text {
-    font-family: 'VT323', monospace;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background: linear-gradient(90deg, #ff007a, #7928ca, #ff0080);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
-    font-weight: 400;
+    font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -381,6 +399,7 @@ nav {
     gap: 16px;
     justify-content: center;
     flex-wrap: wrap;
+    padding: 2px 0;
     margin-bottom: 6px;
 }
 
@@ -392,7 +411,7 @@ nav {
 .btn-primary {
     background: var(--accent);
     color: #fff;
-    padding: 15px 34px;
+    padding: 5px 14px;
     border-radius: 14px;
     font-size: 22px;
     font-weight: 700;
@@ -412,7 +431,7 @@ nav {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: var(--ink);
-    padding: 15px 34px;
+    padding: 5px 14px;
     border-radius: 14px;
     font-size: 22px;
     font-weight: 600;
@@ -460,8 +479,9 @@ nav {
 }
 
 .section-title {
-    font-family: 'VT323', monospace;
-    font-size: clamp(42px, 5vw, 72px);
+    font-family: 'Syne',
+        sans-serif;
+    font-size: clamp(30px, 5vw, 42px);
     font-weight: 800;
     letter-spacing: -1.6px;
     line-height: 1.08;
@@ -908,8 +928,17 @@ footer {
 
 .map-frame iframe {
     width: 100%;
-    height: 100%;
+    height: 380px;
+    /* explicit height so percent-based rules don't collapse */
+    min-height: 380px;
     border: none;
+}
+
+@media (max-width: 768px) {
+    .map-frame iframe {
+        height: 260px;
+        min-height: 260px;
+    }
 }
 
 .faq-section {
@@ -983,17 +1012,18 @@ footer {
 }
 
 footer {
+
     background: rgba(24, 26, 34, 0.92);
     border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 60px 5% 32px;
-    margin-top: 48px;
+    padding: 40px 5% 24px;
+    margin-top: 32px;
 }
 
 .footer-top {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 60px;
-    margin-bottom: 48px;
+    gap: 18px;
+    margin-bottom: 32px;
 }
 
 .footer-brand p {
@@ -1005,7 +1035,7 @@ footer {
 
 .footer-social {
     display: flex;
-    gap: 12px;
+    gap: 5px;
 }
 
 .social-btn {
@@ -1182,7 +1212,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: splash-exit 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) 2.5s forwards;
+    animation: splash-exit 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) 1.5s forwards;
     pointer-events: all;
 }
 
@@ -1192,7 +1222,7 @@ footer {
     object-fit: contain;
     opacity: 0;
     transform: scale(0.8);
-    animation: logo-enter 0.8s ease-out forwards, logo-drift 2.5s ease-in-out infinite alternate;
+    animation: logo-enter 0.8s ease-out forwards, logo-drift 1.5s ease-in-out infinite alternate;
     position: relative;
     z-index: 2;
 }
@@ -1235,6 +1265,12 @@ footer {
     }
 }
 
+.splash-screen~section#home .hero-bg .hero-orb,
+.splash-screen~section#home .hero-bg .orb1,
+.splash-screen~section#home .hero-bg .orb2,
+.splash-screen~section#home .hero-bg .orb3 {
+    display: none !important;
+}
 
 .splash-symbols {
     position: absolute;
