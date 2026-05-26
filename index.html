@@ -325,7 +325,7 @@
         <h4>Contact</h4>
         <ul>
           <li><span>Nagpur, Maharashtra, India</span></li>
-          <li><span>neocodetechnologies@gmail.com</span></li>
+          <li><span>technologiesneocode@gmail.com</span></li>
           <li><span>+91 8421427605</span></li>
           <li><span>+91 8624066459</span></li>
         </ul>
@@ -381,7 +381,7 @@
           phone: phone || 'Not provided',
           service: service || 'Not specified',
           message: message,
-          to_email: 'neocodetechnologies@gmail.com'
+          to_email: 'technologiesneocode@gmail.com'
         };
         try {
           await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams);
@@ -391,7 +391,7 @@
         } catch (err) {
           const subject = encodeURIComponent(`Enquiry — ${service || 'General'} — ${firstName} ${lastName}`);
           const body = encodeURIComponent(`Name: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\nService: ${service || 'N/A'}\n\nMessage:\n${message}`);
-          window.location.href = `mailto:neocodetechnologies@gmail.com?subject=${subject}&body=${body}`;
+          window.location.href = `mailto:technologiesneocode@gmail.com?subject=${subject}&body=${body}`;
           msg.className = 'form-msg success';
           msg.textContent = '📧 Your email client has been opened. Please send the pre-filled email to complete your enquiry.';
         }
