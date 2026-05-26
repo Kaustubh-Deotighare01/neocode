@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoCode Technologies — Products</title>
+    <link rel="icon" type="image/png" href="favicon.png" sizes="150x150">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=VT323&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@barba/core"></script>
+</head>
+
+<body class="show-nav-left">
+    <div data-barba="wrapper">
+        <div data-barba="container" data-barba-namespace="products">
+            <nav>
+                <div class="nav-left" style="visibility: hidden;">
+                    <a href="index.html" class="nav-logo">
+                        <img src="newlogo.png" alt="NeoCode logo" class="nav-logo-img">
+                    </a>
+                </div>
+                <div class="nav-right">
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#contact">Contact Us</a></li>
+                        <li><a href="products.html" class="active">Products</a></li>
+                    </ul>
+                    <button class="hamburger" onclick="toggleMenu()" aria-label="Open navigation menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html" onclick="toggleMenu()">Home</a>
+                <a href="index.html#services" onclick="toggleMenu()">Services</a>
+                <a href="index.html#contact" onclick="toggleMenu()">Contact Us</a>
+                <a href="products.html" onclick="toggleMenu()">Products</a>
+            </div>
+
+            <section class="services-section reveal" style="background: transparent; border: none; box-shadow: none;">
+                <div class="services-header">
+                    <div class="section-label">Demo Products</div>
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-sub">Each demo highlights a different capability, from AI automation to polished
+                        web and
+                        mobile experiences.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <div class="service-icon"><span class="material-icons">smart_toy</span></div>
+                        <div class="service-title">AI Sales Assistant</div>
+                        <p class="service-desc">A predictive assistant that helps teams qualify leads, suggest
+                            responses, and
+                            streamline follow-ups.</p>
+                        <div class="service-arrow">View Demo →</div>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon"><span class="material-icons">analytics</span></div>
+                        <div class="service-title">Inventory Insights Dashboard</div>
+                        <p class="service-desc">Real-time analytics for stock levels, demand forecasts, and supplier
+                            performance
+                            in one central dashboard.</p>
+                        <div class="service-arrow">View Demo →</div>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon"><span class="material-icons">chat</span></div>
+                        <div class="service-title">Chatbot Companion</div>
+                        <p class="service-desc">A conversational AI experience for customer support and internal
+                            knowledge
+                            access with smart intent handling.</p>
+                        <div class="service-arrow">View Demo →</div>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon"><span class="material-icons">smartphone</span></div>
+                        <div class="service-title">Booking & Delivery App</div>
+                        <p class="service-desc">A mobile-first product for scheduling services, tracking deliveries, and
+                            managing customer journeys.</p>
+                        <div class="service-arrow">View Demo →</div>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon"><span class="material-icons">storefront</span></div>
+                        <div class="service-title">E-Commerce Storefront</div>
+                        <p class="service-desc">A polished online storefront demo with product discovery, checkout flow,
+                            and
+                            analytics-ready design.</p>
+                        <div class="service-arrow">View Demo →</div>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon"><span class="material-icons">cloud</span></div>
+                        <div class="service-title">Cloud Automation Portal</div>
+                        <p class="service-desc">A modern operations portal for provisioning resources, monitoring
+                            deployments,
+                            and automating workflows.</p>
+                        <div class="service-arrow">View Demo →</div>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <div class="footer-top">
+                    <div class="footer-brand">
+                        <a href="index.html" class="nav-logo">
+                            <img src="newlogo.png" alt="NeoCode logo" class="nav-logo-img">
+                            <span class="logo-text">NeoCode <span>Technologies</span></span>
+                        </a>
+                        <p>Building intelligent software solutions, AI-powered applications, and scalable digital
+                            platforms for
+                            businesses worldwide.</p>
+                        <div class="footer-social">
+                            <a href="mailto:technologiesneocode@gmail.com" class="social-btn"><span
+                                    class="material-icons">email</span></a>
+                            <a href="tel:+918421427605" class="social-btn"><span class="material-icons">call</span></a>
+                            <a href="http://www.neocodetechnologies.com" class="social-btn" target="_blank"><span
+                                    class="material-icons">public</span></a>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html#services">Services</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                            <li><a href="products.html">Products</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><span>Nagpur, Maharashtra, India</span></li>
+                            <li><span>technologiesneocode@gmail.com</span></li>
+                            <li><span>+91 8421427605</span></li>
+                            <li><span>+91 8624066459</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2026 NeoCode Technologies Pvt. Ltd. All Rights Reserved.</p>
+                    <p>Designed & Developed by NeoCode Technologies.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+        function setupPageInteractions() {
+            document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+        }
+        document.addEventListener('DOMContentLoaded', setupPageInteractions);
+        if (window.barba) {
+            barba.init({
+                sync: true,
+                transitions: [{
+                    name: 'fade-transition',
+                    leave({ current }) {
+                        return new Promise(resolve => {
+                            current.container.style.opacity = '1';
+                            const fadeOut = () => {
+                                const value = parseFloat(current.container.style.opacity) - 0.05;
+                                current.container.style.opacity = value.toString();
+                                if (value <= 0) resolve();
+                                else requestAnimationFrame(fadeOut);
+                            };
+                            fadeOut();
+                        });
+                    },
+                    enter({ next }) {
+                        next.container.style.opacity = '0';
+                        return new Promise(resolve => {
+                            const fadeIn = () => {
+                                const value = parseFloat(next.container.style.opacity) + 0.05;
+                                next.container.style.opacity = value.toString();
+                                if (value >= 1) resolve();
+                                else requestAnimationFrame(fadeIn);
+                            };
+                            fadeIn();
+                        });
+                    }
+                }]
+            });
+        }
+    </script>
+</body>
+
+</html>

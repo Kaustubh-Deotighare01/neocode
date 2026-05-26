@@ -1,12 +1,15 @@
 :root {
-    --paper: #2f3138;
-    --panel: #3b3f4c;
-    --ink: #eef2ff;
-    --ink-muted: #b8bed4;
-    --accent: #7da7ff;
-    --accent-soft: #a6c6f4;
-    --border: #5a5f70;
-    --shadow: rgba(0, 0, 0, 0.35);
+    --paper: #1e1e24;
+    --panel: #2b2b36;
+    --ink: #f8fafc;
+    --ink-muted: #94a3b8;
+    --accent: #4f46e5;
+    --accent-soft: #818cf8;
+    --border: #334155;
+    --shadow: rgba(0, 0, 0, 0.4);
+    --section-bg: rgba(28, 30, 38, 0.92);
+    --section-alt: rgba(22, 24, 30, 0.94);
+    --section-soft: rgba(36, 49, 78, 0.93);
     --line: rgba(255, 255, 255, 0.08);
 }
 
@@ -25,7 +28,7 @@ html {
 body {
     font-family: 'VT323', monospace;
     font-size: 22px;
-    background: linear-gradient(180deg, #2c2f36 0%, #1f2127 100%);
+    background: linear-gradient(180deg, #18181b 0%, #0f1115 100%);
     color: var(--ink);
     overflow-x: hidden;
     line-height: 1.7;
@@ -90,9 +93,15 @@ nav {
 }
 
 .nav-left {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+body.show-nav-left .nav-left {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .nav-right {
@@ -227,7 +236,7 @@ nav {
 .orb1 {
     width: 520px;
     height: 520px;
-    background: radial-gradient(circle, rgba(47, 90, 168, 0.8) 0%, rgba(47, 90, 168, 0) 70%);
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.6) 0%, rgba(79, 70, 229, 0) 70%);
     top: -120px;
     left: -140px;
 }
@@ -235,7 +244,7 @@ nav {
 .orb2 {
     width: 360px;
     height: 360px;
-    background: radial-gradient(circle, rgba(167, 197, 246, 0.8) 0%, rgba(167, 197, 246, 0) 70%);
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.5) 0%, rgba(236, 72, 153, 0) 70%);
     bottom: -100px;
     right: -100px;
 }
@@ -243,7 +252,7 @@ nav {
 .orb3 {
     width: 260px;
     height: 260px;
-    background: radial-gradient(circle, rgba(7, 94, 255, 0.8) 0%, rgba(47, 90, 168, 0) 70%);
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.6) 0%, rgba(14, 165, 233, 0) 70%);
     top: 48%;
     left: 50%;
     transform: translateX(-50%);
@@ -333,7 +342,7 @@ nav {
 }
 
 .hero-title {
-    font-family:  'Syne', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 800;
     font-size: clamp(30px, 7vw, 66px);
     line-height: 1.02;
@@ -495,12 +504,15 @@ nav {
     line-height: 1.75;
 }
 
+section:not(#home) {
+    margin-top: 80px;
+}
+
 .services-section,
 #contact,
 .faq-section,
 .map-section,
-.about-wrap,
-footer {
+.about-wrap {
     position: relative;
     z-index: 1;
     background: rgba(24, 26, 34, 0.92);
@@ -511,7 +523,9 @@ footer {
 
 #services {
     padding: 100px 5%;
-    margin: 48px 0 0;
+    margin: 0;
+    background: linear-gradient(180deg, rgba(18, 28, 52, 0.96), rgba(29, 44, 79, 0.92));
+    border-color: rgba(125, 167, 255, 0.14);
 }
 
 .services-header {
@@ -608,6 +622,10 @@ footer {
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     align-items: center;
+    background: linear-gradient(180deg, rgba(23, 34, 60, 0.94), rgba(32, 45, 75, 0.92));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 32px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
 }
 
 .about-card-main {
@@ -716,10 +734,9 @@ footer {
 }
 
 #contact {
-    background: rgba(24, 26, 34, 0.92);
+    background: linear-gradient(180deg, rgba(21, 31, 52, 0.96), rgba(30, 43, 70, 0.94));
     padding: 100px 10%;
-    margin-top: 48px;
-    margin-bottom: 90px;
+    margin: 0;
 }
 
 .contact-wrap {
@@ -908,9 +925,9 @@ footer {
 }
 
 .map-section {
-    background: rgba(24, 26, 34, 0.92);
+    background: linear-gradient(180deg, rgba(22, 31, 53, 0.95), rgba(28, 40, 64, 0.94));
     padding: 100px 5%;
-    margin-top: 48px;
+    margin: 0;
 }
 
 .map-inner {
@@ -943,7 +960,8 @@ footer {
 
 .faq-section {
     padding: 100px 5%;
-    margin-top: 48px;
+    margin: 0;
+    background: radial-gradient(circle at top, rgba(35, 56, 106, 0.16), transparent 40%), rgba(27, 36, 60, 0.94);
 }
 
 .faq-header {
@@ -1012,11 +1030,14 @@ footer {
 }
 
 footer {
-
-    background: rgba(24, 26, 34, 0.92);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 40px 5% 24px;
-    margin-top: 32px;
+    position: relative;
+    z-index: 1;
+    background: #0f1115;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 60px 5% 24px;
+    margin-top: 80px;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .footer-top {
