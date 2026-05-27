@@ -1676,8 +1676,8 @@ footer {
     background: transparent;
     backdrop-filter: contrast(1.1) brightness(1.15) saturate(1.2) blur(1px);
     -webkit-backdrop-filter: contrast(1.1) brightness(1.15) saturate(1.2) blur(1px);
-    border: 1px solid rgba(92, 92, 92, 0.244);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08), inset 0 8px 15px rgba(255, 255, 255, 0.5), inset 0 -5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(87, 156, 241, 0.43);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08), inset 0 8px 15px rgba(69, 149, 207, 0.5), inset 0 -5px 15px rgba(11, 11, 54, 0.553);
     transition: width 0.3s ease, height 0.3s ease, backdrop-filter 0.3s ease;
     transform-origin: center;
     animation: liquid-blob 2.5s ease-in-out infinite alternate;
