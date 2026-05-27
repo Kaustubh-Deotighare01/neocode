@@ -213,7 +213,7 @@
             </div>
             <div class="contact-item">
               <div class="contact-icon"><span class="material-icons">email</span></div>
-              <div class="contact-item-text"><strong>Email</strong><span>neocodetechnologies@gmail.com</span></div>
+              <div class="contact-item-text"><strong>Email</strong><span>technologiesneocode@gmail.com</span></div>
             </div>
             <div class="contact-item">
               <div class="contact-icon"><span class="material-icons">call</span></div>
@@ -363,6 +363,26 @@
       item.classList.toggle('open');
     }
 
+    function initTypingEffect() {
+      const typingText = document.querySelector('.typing-text');
+      if (typingText && !typingText.dataset.typing) {
+        typingText.dataset.typing = 'true';
+        typingText.textContent = '';
+        const textToType = "NeoCode Technology ";
+        let charIndex = 0;
+        setTimeout(() => {
+          function typeWriter() {
+            if (charIndex < textToType.length && document.contains(typingText)) {
+              typingText.textContent += textToType.charAt(charIndex);
+              charIndex++;
+              setTimeout(typeWriter, 100 + Math.random() * 50);
+            }
+          }
+          typeWriter();
+        }, 500);
+      }
+    }
+
     function setupPageInteractions() {
       const navLinks = document.querySelectorAll('.nav-links a');
       navLinks.forEach(link => {
@@ -452,22 +472,8 @@
         homeObserver.observe(homeSection);
       }
 
-      // Typing Effect Logic
-      const typingText = document.querySelector('.typing-text');
-      if (typingText) {
-        const textToType = "NeoCode Technology ";
-        let charIndex = 0;
-        setTimeout(() => {
-          function typeWriter() {
-            if (charIndex < textToType.length) {
-              typingText.textContent += textToType.charAt(charIndex);
-              charIndex++;
-              setTimeout(typeWriter, 100 + Math.random() * 50);
-            }
-          }
-          typeWriter();
-        }, 500);
-      }
+      // Init Typing Effect
+      initTypingEffect();
 
       // Liquid Glass Cursor Tracking
       const cursorGlass = document.createElement('div');
@@ -536,6 +542,7 @@
       barba.hooks.afterEnter(() => {
         setupPageInteractions();
         revealPage();
+        initTypingEffect();
       });
     }
   </script>
