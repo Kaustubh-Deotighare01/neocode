@@ -219,6 +219,150 @@ body.show-nav-left .nav-left {
     display: flex;
 }
 
+@media (max-width: 900px) {
+    nav {
+        top: 0;
+        padding: 0 4%;
+    }
+
+    .nav-right {
+        background: rgba(26, 28, 36, 0.95);
+        padding: 10px 18px;
+        width: auto;
+        min-width: auto;
+        justify-content: flex-end;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
+@media (max-width: 640px) {
+    .nav-right {
+        padding: 10px 14px;
+    }
+
+    .nav-links a {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 0 4%;
+    }
+
+    #home {
+        padding: 100px 4% 60px;
+    }
+
+    .hero-content {
+        padding: 24px 18px;
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: clamp(36px, 12vw, 56px);
+        word-break: break-word;
+    }
+
+    .hero-sub,
+    .section-sub,
+    .service-desc,
+    .contact-item-text span,
+    .footer-col ul li a,
+    .footer-col ul li span {
+        font-size: 18px;
+    }
+
+    .hero-btns {
+        gap: 12px;
+    }
+
+    .hero-stats {
+        flex-wrap: wrap;
+        gap: 18px;
+        padding-top: 48px;
+    }
+}
+
+@media (max-width: 520px) {
+    nav {
+        padding: 0 3%;
+    }
+
+    .hamburger span {
+        width: 20px;
+    }
+
+    .hero-content {
+        padding: 18px 12px;
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: clamp(28px, 18vw, 40px);
+        line-height: 1.1;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .hero-sub {
+        font-size: 16px;
+        max-width: 100%;
+        margin-bottom: 28px;
+    }
+
+    .hero-badge {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+
+    .hero-btns {
+        gap: 10px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+        font-size: 16px;
+        padding: 10px 14px;
+    }
+
+    .mobile-menu a {
+        font-size: 18px;
+    }
+
+    .services-grid {
+        gap: 16px;
+    }
+
+    .service-card {
+        padding: 22px 18px;
+    }
+
+    .hero-stats {
+        gap: 14px;
+        padding-top: 28px;
+    }
+
+    .hero-stats .stat-num {
+        font-size: 32px;
+    }
+
+    .hero-stats .stat-label {
+        font-size: 16px;
+    }
+
+    .footer-bottom {
+        text-align: center;
+    }
+}
+
 .hero-bg {
     position: absolute;
     inset: 0;
@@ -544,6 +688,18 @@ section:not(#home) {
     margin: 0 auto;
 }
 
+@media (max-width: 980px) {
+    .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .service-card {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.12);
@@ -626,6 +782,53 @@ section:not(#home) {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 32px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 900px) {
+
+    .about-wrap,
+    .contact-wrap,
+    .footer-top {
+        grid-template-columns: 1fr;
+    }
+
+    .about-wrap {
+        padding: 60px 5%;
+        gap: 40px;
+    }
+
+    .contact-wrap {
+        gap: 40px;
+    }
+
+    .footer-top {
+        gap: 24px;
+    }
+
+    .about-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+
+    .about-card-main,
+    .contact-form-box,
+    .footer-brand,
+    .footer-col {
+        padding: 28px;
+    }
+
+    .section-title,
+    .section-sub,
+    .service-title,
+    .hero-title {
+        text-align: center;
+    }
 }
 
 .about-card-main {
@@ -1113,6 +1316,18 @@ footer {
     align-items: center;
     gap: 18px;
     color: var(--ink-muted);
+}
+
+@media (max-width: 680px) {
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-bottom p {
+        width: 100%;
+        font-size: 16px;
+    }
 }
 
 .footer-bottom p {
