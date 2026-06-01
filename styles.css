@@ -1604,4 +1604,28 @@ footer {
     background: var(--accent);
 }
 
+/* Split layout on desktop: Hero content to the left, 3D Canvas to the right */
+@media (min-width: 901px) {
+    .hero-bg {
+        left: 50%;
+        width: 50%;
+    }
+    #home {
+        justify-content: flex-start;
+        padding-left: 8%;
+    }
+    .hero-content {
+        max-width: 550px;
+        text-align: left;
+    }
+    .hero-btns {
+        justify-content: flex-start;
+    }
+    .hero-stats {
+        justify-content: flex-start;
+        padding-top: 60px;
+    }
+}
+
+
 
