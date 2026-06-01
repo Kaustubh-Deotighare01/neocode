@@ -177,14 +177,18 @@ function DataCore() {
   const wireMeshRef = useRef();
   const ringsRef = useRef();
 
-  const { pointer } = useThree();
+  const { pointer, viewport } = useThree();
+  const isDesktop = viewport.width > 6.5;
+  const targetX = isDesktop ? viewport.width * 0.22 : 0;
+  const targetY = isDesktop ? 0 : 0.8;
 
-  // Color mappings
+  // Color mappings: Gold and Silver metallic spectrum
   const colors = useMemo(() => ({
-    cyan: new THREE.Color('#00f3ff'),
-    violet: new THREE.Color('#7a00ff'),
-    blue: new THREE.Color('#0044ff'),
-    darkViolet: new THREE.Color('#21004a')
+    goldLight: new THREE.Color('#FFE082'),  // Warm light gold
+    goldDark: new THREE.Color('#FFB300'),   // Deep amber gold
+    silverLight: new THREE.Color('#FFFFFF'), // Pure bright platinum
+    silverDark: new THREE.Color('#9E9E9E'),  // Metallic chrome grey
+    bgDark: new THREE.Color('#181612')       // Deep bronze shadow backdrop
   }), []);
 
   // Pre-allocate uniforms to avoid GC overhead
@@ -193,15 +197,15 @@ function DataCore() {
     uSpeed: { value: 0.6 },
     uNoiseFreq: { value: 1.2 },
     uNoiseAmp: { value: 0.25 },
-    uColor1: { value: colors.blue },
-    uColor2: { value: colors.cyan },
-    uColor3: { value: colors.darkViolet }
+    uColor1: { value: colors.goldDark },
+    uColor2: { value: colors.goldLight },
+    uColor3: { value: colors.bgDark }
   }), [colors]);
 
   const outerUniforms = useMemo(() => ({
     uTime: { value: 0 },
-    uColorCyan: { value: colors.cyan },
-    uColorViolet: { value: colors.violet }
+    uColorCyan: { value: colors.silverLight },
+    uColorViolet: { value: colors.goldLight }
   }), [colors]);
 
   useFrame((state) => {
@@ -229,19 +233,19 @@ function DataCore() {
     }
 
     // 3. Mouse Parallax/Tilt: core leans towards mouse cursor
-    // pointer.x/y is normalized device coordinates [-1, 1]
     const targetTiltX = -pointer.y * 0.45;
     const targetTiltY = pointer.x * 0.45;
 
     outerGroupRef.current.rotation.x += (targetTiltX - outerGroupRef.current.rotation.x) * 0.08;
     outerGroupRef.current.rotation.y += (targetTiltY - outerGroupRef.current.rotation.y) * 0.08;
 
-    // Gentle floating translation overlay
-    outerGroupRef.current.position.y = Math.sin(time * 0.8) * 0.15;
+    // Smooth horizontal position slide + vertical float
+    outerGroupRef.current.position.x += (targetX - outerGroupRef.current.position.x) * 0.08;
+    outerGroupRef.current.position.y += ((targetY + Math.sin(time * 0.8) * 0.15) - outerGroupRef.current.position.y) * 0.08;
   });
 
   return (
-    <group ref={outerGroupRef}>
+    <group ref={outerGroupRef} scale={1.4}>
       {/* 1. Inner Plasma Morphing Core */}
       <mesh ref={innerMeshRef}>
         <icosahedronGeometry args={[1.5, 4]} />
@@ -271,7 +275,7 @@ function DataCore() {
       <mesh ref={wireMeshRef}>
         <icosahedronGeometry args={[2.04, 2]} />
         <meshBasicMaterial
-          color="#00f3ff"
+          color="#FFE082"
           wireframe={true}
           transparent={true}
           opacity={0.12}
@@ -284,7 +288,7 @@ function DataCore() {
         <mesh rotation={[Math.PI / 2, 0, 0]}>
           <torusGeometry args={[2.4, 0.02, 8, 100]} />
           <meshBasicMaterial
-            color="#7a00ff"
+            color="#FFB300"
             transparent={true}
             opacity={0.4}
             blending={THREE.AdditiveBlending}
@@ -293,7 +297,7 @@ function DataCore() {
         <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
           <torusGeometry args={[2.6, 0.015, 8, 100]} />
           <meshBasicMaterial
-            color="#00f3ff"
+            color="#FFFFFF"
             transparent={true}
             opacity={0.25}
             blending={THREE.AdditiveBlending}
@@ -322,9 +326,11 @@ function AntiGravityParticles() {
     const scales = new Float32Array(PARTICLE_COUNT);      // Individual particle scale factors
 
     const palette = [
-      new THREE.Color('#00f3ff'), // Glowing Cyan
-      new THREE.Color('#0044ff'), // Electric Blue
-      new THREE.Color('#7a00ff'), // Deep Violet
+      new THREE.Color('#FFE082'), // Soft Gold
+      new THREE.Color('#FFB300'), // Amber Gold
+      new THREE.Color('#E0E0E0'), // Silver
+      new THREE.Color('#FFFFFF'), // Platinum White
+      new THREE.Color('#9E9E9E'), // Chrome Grey
     ];
 
     const colors = [];
@@ -487,7 +493,7 @@ export default function HeroSection3D() {
       <div className="hero-bg" style={{ pointerEvents: 'auto' }}>
         <Canvas
           dpr={[1, 2]} // Performance limit pixel ratio on retina screens
-          camera={{ position: [0, 0, 7.5], fov: 45 }}
+          camera={{ position: [0, 0, 11.5], fov: 45 }}
           gl={{
             antialias: true,
             alpha: true,
@@ -511,17 +517,14 @@ export default function HeroSection3D() {
       {/* Hero Content Overlay (Matching original HTML/CSS classes) */}
       <div className="hero-content">
         <div className="hero-badge">
-          <span className="badge-dot"></span>AI-Powered Innovation
+          <span className="badge-dot"></span>
+          <TypingEffect />
         </div>
         
         <h1 className="hero-title">
-          <TypingEffect />
-          <br />
           Innovating the Future with
           <br />
-          <span className="grad">AI-Powered Digital</span>
-          <br />
-          Solutions
+          <span className="grad">AI-Powered Digital</span> Solutions
         </h1>
         
         <p className="hero-sub">

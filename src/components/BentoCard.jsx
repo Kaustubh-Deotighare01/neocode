@@ -44,7 +44,7 @@ function BentoParticle({ left, top }) {
   );
 }
 
-export default function BentoCard({ icon, title, desc, actionText }) {
+export default function BentoCard({ icon, title, desc, actionText, onCardClick }) {
   const cardRef = useRef(null);
   const [particles, setParticles] = useState([]);
 
@@ -161,12 +161,16 @@ export default function BentoCard({ icon, title, desc, actionText }) {
         onComplete: () => ripple.remove()
       }
     );
+
+    if (onCardClick) {
+      onCardClick(e);
+    }
   };
 
   return (
     <div
       ref={cardRef}
-      className="service-card reveal"
+      className="service-card"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}

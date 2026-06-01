@@ -3,33 +3,26 @@ import React, { useState, useEffect } from 'react';
 export default function Navbar({ currentHash }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const isProducts = currentHash.startsWith('#products');
 
   useEffect(() => {
-    // Add show-nav-left class to body for styles.css transitions
-    if (isProducts) {
-      document.body.classList.add('show-nav-left');
-      setIsScrolled(true);
-    } else {
-      const handleScroll = () => {
-        // Show logo when scrolled down past hero section threshold
-        if (window.scrollY > 200) {
-          setIsScrolled(true);
-          document.body.classList.add('show-nav-left');
-        } else {
-          setIsScrolled(false);
-          document.body.classList.remove('show-nav-left');
-        }
-      };
-
-      window.addEventListener('scroll', handleScroll);
-      handleScroll(); // Initial check
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      // Show logo when scrolled down past hero section threshold
+      if (window.scrollY > 200) {
+        setIsScrolled(true);
+        document.body.classList.add('show-nav-left');
+      } else {
+        setIsScrolled(false);
         document.body.classList.remove('show-nav-left');
-      };
-    }
-  }, [isProducts]);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.body.classList.remove('show-nav-left');
+    };
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -38,12 +31,8 @@ export default function Navbar({ currentHash }) {
   const handleLinkClick = (e, targetHash) => {
     setMenuOpen(false);
     
-    // If target starts with '#' and we are on products page, we should let hashchange route back to home
-    if (targetHash.startsWith('#') && targetHash !== '#products' && isProducts) {
-      // Allow hash change to route back to home, then scroll
-      window.location.hash = targetHash;
-    } else if (targetHash.startsWith('#') && targetHash !== '#products') {
-      // On home page, smooth scroll to section
+    if (targetHash.startsWith('#')) {
+      // Smooth scroll to section
       e.preventDefault();
       const element = document.querySelector(targetHash);
       if (element) {
@@ -56,9 +45,10 @@ export default function Navbar({ currentHash }) {
 
   return (
     <>
-      <nav style={{ top: 0 }}>
-        <div className={`nav-left ${!isScrolled && !isProducts ? 'hidden' : ''}`}>
+      <nav>
+        <div className="nav-left">
           <a href="#home" className="nav-logo" onClick={(e) => handleLinkClick(e, '#home')}>
+            <img src="/favicon.png" alt="NeoCode logo emblem" className="nav-logo-emblem" />
             <img src="/newlogo.png" alt="NeoCode logo" className="nav-logo-img" />
           </a>
         </div>
@@ -67,36 +57,45 @@ export default function Navbar({ currentHash }) {
             <li>
               <a 
                 href="#home" 
-                className={!isProducts && currentHash === '#home' ? 'active' : ''}
+                className={currentHash === '#home' ? 'active' : ''}
                 onClick={(e) => handleLinkClick(e, '#home')}
+                aria-label="Home"
               >
-                Home
-              </a>
-            </li>
-            <li>
-              <a 
-                href="#services" 
-                className={!isProducts && currentHash === '#services' ? 'active' : ''}
-                onClick={(e) => handleLinkClick(e, '#services')}
-              >
-                Services
-              </a>
-            </li>
-            <li>
-              <a 
-                href="#contact" 
-                className={!isProducts && currentHash === '#contact' ? 'active' : ''}
-                onClick={(e) => handleLinkClick(e, '#contact')}
-              >
-                Contact Us
+                <span className="material-icons">home</span>
+                <span className="nav-label">Home</span>
               </a>
             </li>
             <li>
               <a 
                 href="#products" 
-                className={isProducts ? 'active' : ''}
+                className={currentHash === '#products' ? 'active' : ''}
+                onClick={(e) => handleLinkClick(e, '#products')}
+                aria-label="Products"
               >
-                Products
+                <span className="material-icons">inventory</span>
+                <span className="nav-label">Products</span>
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#services" 
+                className={currentHash === '#services' ? 'active' : ''}
+                onClick={(e) => handleLinkClick(e, '#services')}
+                aria-label="Services"
+              >
+                <span className="material-icons">widgets</span>
+                <span className="nav-label">Services</span>
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#contact" 
+                className={currentHash === '#contact' ? 'active' : ''}
+                onClick={(e) => handleLinkClick(e, '#contact')}
+                aria-label="Contact Us"
+              >
+                <span className="material-icons">email</span>
+                <span className="nav-label">Contact</span>
               </a>
             </li>
           </ul>
@@ -115,9 +114,9 @@ export default function Navbar({ currentHash }) {
 
       <div className={`mobile-menu ${menuOpen ? 'open' : ''}`} id="mobileMenu">
         <a href="#home" onClick={(e) => handleLinkClick(e, '#home')}>Home</a>
+        <a href="#products" onClick={(e) => handleLinkClick(e, '#products')}>Products</a>
         <a href="#services" onClick={(e) => handleLinkClick(e, '#services')}>Services</a>
         <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')}>Contact Us</a>
-        <a href="#products" onClick={() => setMenuOpen(false)}>Products</a>
       </div>
     </>
   );

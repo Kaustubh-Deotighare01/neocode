@@ -17,7 +17,7 @@ export default function Footer() {
       <div className="footer-top">
         <div className="footer-brand">
           <a href="#home" className="nav-logo" onClick={(e) => handleLinkClick(e, '#home')}>
-            <img src="/newlogo.png" alt="NeoCode logo" className="nav-logo-img" />
+            <img src="/dist/favicon.png" alt="NeoCode logo" className="nav-logo-img" />
             <span className="logo-text">NeoCode <span>Technologies</span></span>
           </a>
           <p>Building intelligent software solutions, AI-powered applications, and scalable digital platforms for businesses worldwide.</p>
