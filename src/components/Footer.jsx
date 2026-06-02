@@ -17,10 +17,9 @@ export default function Footer() {
       <div className="footer-top">
         <div className="footer-brand">
           <a href="#home" className="nav-logo" onClick={(e) => handleLinkClick(e, '#home')}>
-            <img src="/dist/favicon.png" alt="NeoCode logo" className="nav-logo-img" />
+            <img src="/favicon.png" alt="NeoCode logo" className="nav-logo-img" />
             <span className="logo-text">NeoCode <span>Technologies</span></span>
           </a>
-          <p>Building intelligent software solutions, AI-powered applications, and scalable digital platforms for businesses worldwide.</p>
           <div className="footer-social">
             <a href="mailto:technologiesneocode@gmail.com" className="social-btn">
               <span className="material-icons">email</span>
@@ -32,15 +31,6 @@ export default function Footer() {
               <span className="material-icons">public</span>
             </a>
           </div>
-        </div>
-        <div className="footer-col">
-          <h4>Navigation</h4>
-          <ul>
-            <li><a href="#home" onClick={(e) => handleLinkClick(e, '#home')}>Home</a></li>
-            <li><a href="#services" onClick={(e) => handleLinkClick(e, '#services')}>Services</a></li>
-            <li><a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')}>Contact</a></li>
-            <li><a href="#products">Products</a></li>
-          </ul>
         </div>
         <div className="footer-col">
           <h4>Contact</h4>
